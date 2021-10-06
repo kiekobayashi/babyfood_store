@@ -1,0 +1,261 @@
+/*対ユーザー画面用CSS*/
+
+body {
+    background-color: #ffffaa;
+    margin: 0px;
+    min-width: 960px;
+}
+a {
+    text-decoration: none;
+    color: #664433;
+}
+li {
+    list-style: none;
+}
+header {
+    background-color: #ffffff;
+    color: #664433;
+    padding: 0px;
+    margin: 0px;
+    border-bottom: solid 1px #cccccc;
+}
+.header-box {
+    display: flex;
+    width: 960px;
+    margin: 0px auto;
+}
+.titlelogo {
+    width: 50px;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+.title {
+    flex: 5;
+    margin-top: 10px;
+    font-size:28px;
+    font-family: "courier";
+
+}
+.headerright {
+    flex: 2;
+    display: flex;
+}
+.userinfo {
+    flex:3;
+}
+.username {
+    margin: 15px 0px 5px;
+}
+.cartimage {
+    flex: 1;
+    margin-top: 10px;
+}
+.cart img {
+    width: 35px;
+    margin-top: 10px;
+}
+
+/*ユーザ登録ページ*/
+.register {
+    margin: 50px auto;
+    width: 400px;
+}
+input[type="submit"] {
+    margin-top: 5px;
+}
+
+/*月齢別画面*/
+.select_age {
+    display: flex;
+    list-style: none;
+    font-size: 13px;
+    margin: 0px auto;
+    width: 960px;
+    padding: 3px 0px;
+    text-align: center;
+}
+.age_list {
+    flex: 1;
+    margin: 0px 5px;
+    padding: 0px 122px;
+    border-radius: 10px;
+}
+.age_0 {
+    background-color: #ffe4e1;
+}
+.age_0:hover {
+  background-color: #ffc0cb;
+}
+.age_1 {
+    background-color: #e6ffe9;
+}
+.age_1:hover {
+  background-color: #cbffd3;
+}
+.age_2 {
+    background-color: #d7eeff;
+}
+.age_2:hover {
+  background-color: #c2eeff;
+}
+
+.content {
+    margin-left: auto;
+    margin-right: auto;
+    width: 960px;
+}
+.login {
+    margin: 50px auto;
+    width: 400px;
+}
+div {
+    display: block;
+}
+/*.itemform {*/
+/*    display: block;*/
+/*}*/
+.red {
+    color: #ff0000;
+}
+
+/*月齢別ページ*/
+h2 {
+    color: #664433;
+    font-size: 18px;
+    margin-top: 18px;
+    margin-bottom: 0px;
+}
+
+/*商品管理画面*/
+.item-list .item {
+    text-align: center;
+    margin: 5px;
+    padding-bottom: 10px;
+}
+.item {
+    background-color: #ffffff;
+}
+.item-list {
+    display: flex;
+    list-style: none;
+    flex-wrap: wrap;
+    padding-left: 24px;
+}
+.item-list .itemimage {
+    width: 275px;
+    margin: 10px;
+}
+
+/*商品詳細ページ*/
+.detail_item {
+    width: 800px;
+    height: 400px;
+    background-color: #ffffff;
+    margin-top: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+}
+.detail_item_form {
+    display: flex;
+}
+.detail_image {
+    flex: 1;
+}
+.detail_image img {
+    width: 500px;
+}
+.detail_right {
+    flex: 1;
+    padding-left: 15px;
+}
+.detail_name {
+    font-size: 25px;
+}
+.detail_price {
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+/*ショッピングカート*/
+.cart-list .cart-item-name {
+    margin-left: 30px;
+    margin-right: 76px;
+    width: 360px;
+}
+.cart-list {
+    padding: 0px;
+}
+.cart-list-title .cart-list-price {
+    margin-left: 710px;
+}
+.cart-list-title .cart-list-num {
+    margin-left: 70px;
+}
+.cart-list-title {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #ccc;
+}
+.cart_item {
+    display: flex;
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0px 20px 0px;
+}
+.cart-item-price {
+    margin-left: 40px;
+}
+.cart-list .form_select_amount {
+    float: right;
+    margin-left: 50px;
+}
+.cart-list .cart-item-num2 {
+    width: 50px;
+}
+.cart-item-num {
+    margin-left: 80px;
+}
+.itemimage {
+    width: 200px;
+}
+.buy-sum-title {
+    margin-left: 790px;
+}
+.buy-sum-price {
+    font-size: 25px;
+}
+.buy-btn {
+    margin-left: 880px;
+}
+.finish-msg {
+    text-align: center;
+    font-size: 25px;
+    margin-top: 10px;
+}
+
+.footer {
+    display: flex;
+    width: 650px;
+    list-style: none;
+    font-size: 13px;
+    margin: 10px auto;
+    text-align: center;
+    padding-left: 0px;
+}
+.footerlist {
+    border-right: solid 1px;
+    flex: 1;
+}
+.footerlist:last-child {
+    border-right: 0;
+}
+.footerlist a {
+    color: #000000;
+}
+.copyright {
+    margin: 0px;
+    padding-bottom: 25px;
+    font-size: 13px;
+    text-align: center;
+}
