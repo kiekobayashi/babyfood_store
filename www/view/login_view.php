@@ -14,7 +14,10 @@
             <form method="post" action="login_processing.php">
                 <div><input type="text" name="user_name" placeholder="ユーザー名"></div>
                 <div><input type="password" name="password" placeholder="パスワード"></div>
-                <div><input type="submit" value="ログイン"></div>
+                <div>
+                    <input type="submit" value="ログイン">
+                    <input type="hidden" name="token" value="<?php print h($token); ?>"> 
+                </div>
             </form>
             <?php include VIEW_PATH . 'templates/messages.php'; ?>
             <div class="account-create">

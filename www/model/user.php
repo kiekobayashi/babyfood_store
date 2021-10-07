@@ -18,23 +18,24 @@ function get_user($db, $user_id){
   return fetch_query($db, $sql, $params);
 }
 
-function get_user_by_name($db, $name){
+function get_user_by_name($db, $user_name){
   $sql = "
     SELECT
       id, 
-      name
+      user_name,
+      password
     FROM
       users
     WHERE
-      user_name = :name
+      user_name = :user_name
     LIMIT 1
   ";
-  $params = array(':name' => $name);
+  $params = array(':user_name' => $user_name);
   return fetch_query($db, $sql, $params);
 }
 
-function login_as($db, $name, $password){
-  $user = get_user_by_name($db, $name);
+function login_as($db, $user_name, $password){
+  $user = get_user_by_name($db, $user_name);
   if($user === false || $user['password'] !== $password){
     return false;
   }
@@ -97,12 +98,12 @@ function is_valid_password($password, $password_confirmation){
   return $is_valid;
 }
 
-function insert_user($db, $name, $password){
+function insert_user($db, $user_name, $password){
   $sql = "
     INSERT INTO
-      users(name, password)
-    VALUES (:name, :password);
+      users(user_name, password)
+    VALUES (:user_name, :password);
   ";
-  $params = array(':name' => $name, ':password' => $password);
+  $params = array(':user_name' => $user_name, ':password' => $password);
   return execute_query($db, $sql, $params);
 }

@@ -1,4 +1,4 @@
- <?php
+<?php
 require_once '../conf/const.php';
 require_once MODEL_PATH . 'functions.php';
 require_once MODEL_PATH . 'user.php';
@@ -20,7 +20,7 @@ if (is_valid_csrf_token($token) === false) {
 
 $db = get_db_connect();
 
-$user = login_as($db, $name, $password);
+$user = login_as($db, $user_name, $password);
 if( $user === false){
   set_error('ログインに失敗しました。');
   redirect_to(LOGIN_URL);
@@ -28,6 +28,6 @@ if( $user === false){
 
 set_message('ログインしました。');
 if ($user['type'] === USER_TYPE_ADMIN){
-  redirect_to(ADMIN_URL);
+  redirect_to(MANAGE_URL);
 }
 redirect_to(TOP_URL);
