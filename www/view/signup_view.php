@@ -3,32 +3,17 @@
 <head>
     <meta charset="utf-8">
     <title>ユーザ登録ページ</title>
-    <link rel="stylesheet" href="customer.css">
+    <link rel="stylesheet" href="<?php print(STYLESHEET_PATH . 'customer.css'); ?>">
 </head>
 <body>
     <header>
-        <div class="header-box">
-            <div class="title">
-                <a href="./top.php">
-                    <img class="titlelogo" src="./image/logo.jpeg" alt="Baby Food Store">Baby Food Store
-                </a>
-            </div>
-        </div>
+        <?php include VIEW_PATH . 'templates/header.php'; ?>
     </header>
     <div class="content">
-<?php if (count($err_msg) > 0) { ?>
-    <?php foreach ($err_msg as $value) { ?>
-    <p><?php print $value; ?></p>
-    <?php } ?>
-<?php } ?>
-<?php if (count($scs_msg) > 0) { ?>
-    <?php foreach ($scs_msg as $value) { ?>
-    <p><?php print $value; ?></p>
-    <?php } ?>
-<?php } ?>
+        <?php include VIEW_PATH . 'templates/messages.php'; ?>
         <div class="register">
-            <form method="post">
-                <div>ユーザー名：<input type="text" name="user_name" placeholder="ユーザー名"></div>
+            <form method="post" action="signup_processing.php">
+                <div>ユーザー名：<input type="text" name="name" placeholder="ユーザー名"></div>
                 <div>パスワード：<input type="password" name="password" placeholder="パスワード"></div>
                 <div><input type="submit" value="ユーザーを新規作成する"></div>
             </form>

@@ -20,8 +20,8 @@ if (is_valid_csrf_token($token) === false) {
 
 $db = get_db_connect();
 
-$user = login_as($db, $user_name, $password);
-if( $user === false){
+$user = login_as($db, $name, $password);
+if($user === false){
   set_error('ログインに失敗しました。');
   redirect_to(LOGIN_URL);
 }

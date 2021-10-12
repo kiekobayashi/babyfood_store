@@ -16,9 +16,9 @@ function get_item($db, $item_id){
     FROM
       items
     WHERE
-      item_id = :item_id
+      id = :id
   ";
-  $params = array(':item_id' => $item_id);
+  $params = array(':id' => $id);
   return fetch_query($db, $sql, $params);
 }
 
@@ -27,10 +27,12 @@ function get_items($db, $is_open = false){
     SELECT
       id, 
       name,
+      comment,
       stock,
       price,
       img,
-      status
+      status,
+      age
     FROM
       items
   ';
@@ -51,17 +53,17 @@ function get_open_items($db){
   return get_items($db, true);
 }
 
-function regist_item($db, $name, $price, $stock, $status, $image){
+function regist_item($db, $name, $comment, $price, $stock, $status, $image, $age){
   $filename = get_upload_filename($image);
-  if(validate_item($name, $price, $stock, $filename, $status) === false){
+  if(validate_item($name, $comment, $price, $stock, $filename, $status, $age) === false){
     return false;
   }
-  return regist_item_transaction($db, $name, $price, $stock, $status, $image, $filename);
+  return regist_item_transaction($db, $name, $comment, $price, $stock, $status, $image, $filename, $age);
 }
 
-function regist_item_transaction($db, $name, $price, $stock, $status, $image, $filename){
+function regist_item_transaction($db, $name, $comment, $price, $stock, $status, $image, $filename, $age){
   $db->beginTransaction();
-  if(insert_item($db, $name, $price, $stock, $filename, $status) 
+  if(insert_item($db, $name, $comment, $price, $stock, $filename, $status, $age) 
     && save_image($image, $filename)){
     $db->commit();
     return true;
@@ -71,58 +73,74 @@ function regist_item_transaction($db, $name, $price, $stock, $status, $image, $f
   
 }
 
-function insert_item($db, $name, $price, $stock, $filename, $status){
+function insert_item($db, $name, $comment, $price, $stock, $filename, $status, $age){
   $status_value = PERMITTED_ITEM_STATUSES[$status];
   $sql = "
     INSERT INTO
       items(
         name,
+        comment,
         price,
         stock,
         img,
-        status
+        status,
+        age
       )
-    VALUES(:name, :price, :stock, :filename, :status_value);
+    VALUES(:name, :comment, :price, :stock, :filename, :status_value, :age);
   ";
-  $params = array(':name' => $name, ':price' => $price, ':stock' => $stock, ':filename' => $filename, ':status_value' => $status_value);
+  $params = array(':name' => $name, ':comment' => $comment, ':price' => $price, ':stock' => $stock, ':filename' => $filename, ':status_value' => $status_value, ':age' => $age);
   return execute_query($db, $sql, $params);
 }
 
-function update_item_status($db, $item_id, $status){
+function update_item_status($db, $id, $status){
   $sql = "
     UPDATE
       items
     SET
       status = :status
     WHERE
-      item_id = :item_id
+      id = :id
     LIMIT 1
   ";
-  $params = array(':status' => $status, ':item_id' => $item_id);
+  $params = array(':status' => $status, ':id' => $id);
   return execute_query($db, $sql, $params);
 }
 
-function update_item_stock($db, $item_id, $stock){
+function update_item_stock($db, $id, $stock){
   $sql = "
     UPDATE
       items
     SET
       stock = :stock
     WHERE
-      item_id = :item_id
+      id = :id
     LIMIT 1
   ";
-  $params = array(':stock' => $stock, ':item_id' => $item_id);
+  $params = array(':stock' => $stock, ':id' => $id);
   return execute_query($db, $sql, $params);
 }
 
-function destroy_item($db, $item_id){
-  $item = get_item($db, $item_id);
+function update_item_age($db, $id, $age){
+  $sql = "
+    UPDATE
+      items
+    SET
+      age = :age
+    WHERE
+      id = :id
+    LIMIT 1
+  ";
+  $params = array(':age' => $age, ':id' => $id);
+  return execute_query($db, $sql, $params);
+}
+
+function destroy_item($db, $id){
+  $item = get_item($db, $id);
   if($item === false){
     return false;
   }
   $db->beginTransaction();
-  if(delete_item($db, $item['item_id'])
+  if(delete_item($db, $item['id'])
     && delete_image($item['image'])){
     $db->commit();
     return true;
@@ -131,15 +149,15 @@ function destroy_item($db, $item_id){
   return false;
 }
 
-function delete_item($db, $item_id){
+function delete_item($db, $id){
   $sql = "
     DELETE FROM
       items
     WHERE
-      item_id = :item_id
+      id = :id
     LIMIT 1
   ";
-  $params = array(':item_id' => $item_id);
+  $params = array(':id' => $id);
   return execute_query($db, $sql, $params);
 }
 

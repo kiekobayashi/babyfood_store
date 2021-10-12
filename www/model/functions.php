@@ -73,7 +73,7 @@ function get_messages(){
 }
 
 function is_logined(){
-  return get_session('user_id') !== '';
+  return get_session('id') !== '';
 }
 
 function get_upload_filename($file){

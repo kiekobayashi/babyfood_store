@@ -30,26 +30,13 @@
     <p><a href="./user.php">ユーザ管理ページ</a></p>
     <p><a href="./logout.php">ログアウト</a></p>
     <h2>新規商品追加</h2>
-<?php if (count($err_msg) > 0) { ?>
-    <ul>
-    <?php foreach ($err_msg as $value) { ?>
-        <li><?php print $value; ?></li>
-    <?php } ?>
-    </ul>
-<?php } ?>
-<?php if (count($scs_msg) > 0) { ?>
-    <ul>
-    <?php foreach ($scs_msg as $value) { ?>
-        <li><?php print $value; ?></li>
-    <?php } ?>
-    </ul>
-<?php } ?>
+    <?php include VIEW_PATH . 'templates/messages.php'; ?>
     <form method="post" enctype="multipart/form-data">
         <p>名前：<input type="text" name="name"></p>
         <p>商品情報：<input type="text" name="comment"></p>
         <p>値段：<input type="text" name="price"></p>
         <p>個数：<input type="text" name="stock"></p>
-        <p><input type="file" name="new_img" value="ファイルを選択"></p>
+        <p><input type="file" name="image" value="ファイルを選択"></p>
         <p>
             <select name="status">
                 <option value="0">非公開</option>
@@ -83,15 +70,15 @@
             </tr>
         </thread>
         <tbody>
-<?php foreach ($data as $value) { ?>
+<?php foreach ($items as $value) { ?>
     <?php if ($value['status'] === 1) { ?>
         <tr>
     <?php } else { ?>
         <tr class="status_false">
     <?php } ?>
-            <td><img src="<?php print $img_dir . htmlspecialchars($value['img'], ENT_QUOTES, 'UTF-8'); ?>"></td>
-            <td><?php print htmlspecialchars($value['name'], ENT_QUOTES, 'UTF-8'); ?></td>
-            <td><?php print htmlspecialchars($value['comment'], ENT_QUOTES, 'UTF-8'); ?></td>
+            <td><img src="<?php print(IMAGE_PATH . $value['img']); ?>"></td>
+            <td><?php print h($value['name']); ?></td>
+            <td><?php print h($value['comment']); ?></td>
             <td><?php print $value['price']; ?>円</td>
             <td>
                 <form method="post">

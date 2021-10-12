@@ -12,7 +12,7 @@
     <div class="content">
         <div class="login">
             <form method="post" action="login_processing.php">
-                <div><input type="text" name="user_name" placeholder="ユーザー名"></div>
+                <div><input type="text" name="name" placeholder="ユーザー名"></div>
                 <div><input type="password" name="password" placeholder="パスワード"></div>
                 <div>
                     <input type="submit" value="ログイン">
