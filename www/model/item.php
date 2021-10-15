@@ -4,15 +4,17 @@ require_once MODEL_PATH . 'db.php';
 
 // DB利用
 
-function get_item($db, $item_id){
+function get_item($db, $id){
   $sql = "
     SELECT
       id, 
       name,
+      comment,
       stock,
       price,
       img,
-      status
+      status, 
+      age
     FROM
       items
     WHERE
@@ -75,6 +77,7 @@ function regist_item_transaction($db, $name, $comment, $price, $stock, $status, 
 
 function insert_item($db, $name, $comment, $price, $stock, $filename, $status, $age){
   $status_value = PERMITTED_ITEM_STATUSES[$status];
+  $age_value = PERMITTED_ITEM_AGES[$age];
   $sql = "
     INSERT INTO
       items(
@@ -86,9 +89,9 @@ function insert_item($db, $name, $comment, $price, $stock, $filename, $status, $
         status,
         age
       )
-    VALUES(:name, :comment, :price, :stock, :filename, :status_value, :age);
+    VALUES(:name, :comment, :price, :stock, :filename, :status_value, :age_value);
   ";
-  $params = array(':name' => $name, ':comment' => $comment, ':price' => $price, ':stock' => $stock, ':filename' => $filename, ':status_value' => $status_value, ':age' => $age);
+  $params = array(':name' => $name, ':comment' => $comment, ':price' => $price, ':stock' => $stock, ':filename' => $filename, ':status_value' => $status_value, ':age_value' => $age_value);
   return execute_query($db, $sql, $params);
 }
 
@@ -141,7 +144,7 @@ function destroy_item($db, $id){
   }
   $db->beginTransaction();
   if(delete_item($db, $item['id'])
-    && delete_image($item['image'])){
+    && delete_image($item['img'])){
     $db->commit();
     return true;
   }
@@ -189,24 +192,38 @@ function is_open($item){
   return $item['status'] === 1;
 }
 
-function validate_item($name, $price, $stock, $filename, $status){
+
+function validate_item($name, $comment, $price, $stock, $filename, $status, $age){
   $is_valid_item_name = is_valid_item_name($name);
+  $is_valid_item_comment = is_valid_item_comment($comment);
   $is_valid_item_price = is_valid_item_price($price);
   $is_valid_item_stock = is_valid_item_stock($stock);
   $is_valid_item_filename = is_valid_item_filename($filename);
   $is_valid_item_status = is_valid_item_status($status);
+  $is_valid_item_age = is_valid_item_age($age);
 
   return $is_valid_item_name
+    && $is_valid_item_comment
     && $is_valid_item_price
     && $is_valid_item_stock
     && $is_valid_item_filename
-    && $is_valid_item_status;
+    && $is_valid_item_status
+    && $is_valid_item_age;
 }
 
 function is_valid_item_name($name){
   $is_valid = true;
   if(is_valid_length($name, ITEM_NAME_LENGTH_MIN, ITEM_NAME_LENGTH_MAX) === false){
     set_error('商品名は'. ITEM_NAME_LENGTH_MIN . '文字以上、' . ITEM_NAME_LENGTH_MAX . '文字以内にしてください。');
+    $is_valid = false;
+  }
+  return $is_valid;
+}
+
+function is_valid_item_comment($comment){
+  $is_valid = true;
+  if(is_valid_length($comment, ITEM_NAME_LENGTH_MIN, ITEM_NAME_LENGTH_MAX) === false){
+    set_error('商品情報は'. ITEM_NAME_LENGTH_MIN . '文字以上、' . ITEM_NAME_LENGTH_MAX . '文字以内にしてください。');
     $is_valid = false;
   }
   return $is_valid;
@@ -241,6 +258,16 @@ function is_valid_item_filename($filename){
 function is_valid_item_status($status){
   $is_valid = true;
   if(isset(PERMITTED_ITEM_STATUSES[$status]) === false){
+    set_error('ステータスが正しくありません');
+    $is_valid = false;
+  }
+  return $is_valid;
+}
+
+function is_valid_item_age($age){
+  $is_valid = true;
+  if(isset(PERMITTED_ITEM_AGES[$age]) === false){
+    set_error('月齢が正しくありません');
     $is_valid = false;
   }
   return $is_valid;

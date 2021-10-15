@@ -13,6 +13,7 @@ function get_user_carts($db, $user_id){
       items.img,
       carts.id,
       carts.user_id,
+      carts.item_id,
       carts.amount
     FROM
       carts
@@ -60,7 +61,7 @@ function add_cart($db, $user_id, $item_id ) {
   if($cart === false){
     return insert_cart($db, $user_id, $item_id);
   }
-  return update_cart_amount($db, $cart['cart_id'], $cart['amount'] + 1);
+  return update_cart_amount($db, $cart['id'], $cart['amount'] + 1);
 }
 
 function insert_cart($db, $user_id, $item_id, $amount = 1){
@@ -77,29 +78,29 @@ function insert_cart($db, $user_id, $item_id, $amount = 1){
   return execute_query($db, $sql, $params);
 }
 
-function update_cart_amount($db, $cart_id, $amount){
+function update_cart_amount($db, $id, $amount){
   $sql = "
     UPDATE
       carts
     SET
       amount = :amount
     WHERE
-      cart_id = :cart_id
+      id = :id
     LIMIT 1
   ";
-  $params = array(':cart_id' => $cart_id, ':amount' => $amount);
+  $params = array(':id' => $id, ':amount' => $amount);
   return execute_query($db, $sql, $params);
 }
 
-function delete_cart($db, $cart_id){
+function delete_cart($db, $item_id){
   $sql = "
     DELETE FROM
       carts
     WHERE
-      cart_id = :cart_id
+      item_id = :item_id
     LIMIT 1
   ";
-  $params = array(':cart_id' => $cart_id);
+  $params = array(':item_id' => $item_id);
   return execute_query($db, $sql, $params);
 }
 

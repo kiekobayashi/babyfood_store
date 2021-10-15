@@ -34,9 +34,9 @@
                 <th>ユーザID</th>
                 <th>登録日</th>
             </tr>
-<?php foreach ($data as $value) { ?>
+<?php foreach ($users as $value) { ?>
             <tr>
-                <td class="name_width"><?php print htmlspecialchars($value['user_name'], ENT_QUOTES, 'UTF-8'); ?></td>
+                <td class="name_width"><?php print h($value['name']); ?></td>
                 <td ><?php print $value['createdate']; ?></td>
             </tr>
 <?php } ?>

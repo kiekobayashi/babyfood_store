@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>ショッピングカートページ</title>
-    <link rel="stylesheet" href="customer.css">
+    <link rel="stylesheet" href="<?php print(STYLESHEET_PATH . 'customer.css'); ?>">
 </head>
 <body>
     <header>
@@ -11,34 +11,21 @@
     </header>
     <div class="content">
         <h1 class="title">ショッピングカート</h1>
-<?php if (count($err_msg) > 0) { ?>
-        <ul>
-    <?php foreach ($err_msg as $value) { ?>
-            <li><?php print $value; ?></li>
-    <?php } ?>
-        </ul>
-<?php } ?>
-<?php if (count($scs_msg) > 0) { ?>
-        <ul>
-    <?php foreach ($scs_msg as $value) { ?>
-            <li><?php print $value; ?></li>
-    <?php } ?>
-        </ul>
-<?php } ?>
-<?php if (count($cart_data) === 0) { ?>
+        <?php include VIEW_PATH . 'templates/messages.php'; ?>
+        <?php if (count($carts) === 0) { ?>
         <p>商品はありません。</p>
 <?php } ?>
         <div class="cart-list-title">
             <span class="cart-list-price">価格</span>
             <span class="cart-list-num">数量</span>
         </div>
-<?php foreach ($cart_data as $value) { ?>
+<?php foreach ($carts as $value) { ?>
         <ul class="cart-list">
             <li>
                 <div class="cart_item">
-                    <img class="itemimage" src="<?php print $img_dir . htmlspecialchars($value['img'], ENT_QUOTES, 'UTF-8'); ?>">
-                    <span class="cart-item-name"><?php print htmlspecialchars($value['name'], ENT_QUOTES, 'UTF-8'); ?></span>
-                    <form class="cart-item-del" action="./cart.php" method="post">
+                    <img class="itemimage" src="<?php print(IMAGE_PATH . $value['img']); ?>">
+                    <span class="cart-item-name"><?php print h($value['name']); ?></span>
+                    <form class="cart-item-del" action="cart.php" method="post">
                         <input type="submit" value="削除">
                         <input type="hidden" name="item_id" value="<?php print $value['item_id']; ?>">
                         <input type="hidden" name="sql_kind" value="delete_cart">

@@ -19,6 +19,19 @@ function get_user($db, $id){
   return fetch_query($db, $sql, $params);
 }
 
+function get_all_users($db){
+  $sql = "
+    SELECT
+      id, 
+      name,
+      createdate
+    FROM
+      users
+  ";
+  return fetch_all_query($db, $sql);
+}
+
+
 function get_user_by_name($db, $name){
   $sql = "
     SELECT

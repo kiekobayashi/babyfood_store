@@ -39,15 +39,15 @@
         <p><input type="file" name="image" value="ファイルを選択"></p>
         <p>
             <select name="status">
-                <option value="0">非公開</option>
-                <option value="1">公開</option>
+                <option value="close">非公開</option>
+                <option value="open">公開</option>
             </select>
         </p>
         <p>
             <select name="age">
-                <option value="0">ごっくん期</option>
-                <option value="1">もぐもぐ期</option>
-                <option value="2">かみかみ期</option>
+                <option value="first">ごっくん期</option>
+                <option value="second">もぐもぐ期</option>
+                <option value="last">かみかみ期</option>
             </select>
         </p>
         <p><input type="submit" name="submit" value="■□■□■商品追加■□■□■"></p>

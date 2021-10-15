@@ -16,6 +16,7 @@ function get_db_connect(){
   return $dbh;
 }
 
+//  一次元のデータをとってくる
 function fetch_query($db, $sql, $params = array()){
   try{
     $statement = $db->prepare($sql);
@@ -27,6 +28,7 @@ function fetch_query($db, $sql, $params = array()){
   return false;
 }
 
+// 二次元のデータをとってくる
 function fetch_all_query($db, $sql, $params = array()){
   try{
     $statement = $db->prepare($sql);
@@ -38,6 +40,7 @@ function fetch_all_query($db, $sql, $params = array()){
   return false;
 }
 
+// SELECT以外はこれで処理
 function execute_query($db, $sql, $params = array()){
   try{
     $statement = $db->prepare($sql);

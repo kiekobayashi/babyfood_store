@@ -38,9 +38,9 @@ $image = get_file('image');
  
 if ($sql_kind === 'insert') {
     if(regist_item($db, $name, $comment, $price, $stock, $status, $image, $age)){
-    set_message('商品を登録しました。');
+        set_message('商品を登録しました。');
     }else {
-    set_error('商品の登録に失敗しました。');
+        set_error('商品の登録に失敗しました。');
     }
 }
                     
@@ -50,9 +50,9 @@ if ($sql_kind === 'update') {
 
     if(update_item_stock($db, $id, $stock)){
         set_message('在庫数を変更しました。');
-      } else {
+    } else {
         set_error('在庫数の変更に失敗しました。');
-      }      
+    }      
 }
 
 if ($sql_kind === 'change') {
