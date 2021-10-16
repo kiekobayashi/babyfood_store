@@ -3,39 +3,26 @@
 <head>
     <meta charset="utf-8">
     <title>購入完了ページ</title>
-    <link type="text/css" rel="stylesheet" href="./customer.css">
+    <link type="text/css" rel="stylesheet" href="<?php print(STYLESHEET_PATH . 'customer.css'); ?>">
 </head>
 <body>
     <header>
         <?php include VIEW_PATH . 'templates/header_logined.php'; ?>
     </header>
     <div class="content">
-<?php if (count($err_msg) > 0) { ?>
-    <ul>
-    <?php foreach ($err_msg as $value) { ?>
-        <li><?php print $value; ?></li>
-    <?php } ?>
-    </ul>
-<?php } ?>
-<?php if (count($scs_msg) > 0) { ?>
-    <ul>
-    <?php foreach ($scs_msg as $value) { ?>
-        <li><?php print $value; ?></li>
-    <?php } ?>
-    </ul>
-<?php } ?>
-<?php if (count($err_msg) === 0) { ?>
+    <?php include VIEW_PATH . 'templates/messages.php'; ?>
+    <?php if (purchase_carts($db, $carts) === true) { ?>
         <div class="finish-msg">ご購入ありがとうございました。</div>
         <div class="cart-list-title">
             <span class="cart-list-price">価格</span>
             <span class="cart-list-num">数量</span>
         </div>
             <ul class="cart-list">
-    <?php foreach ($cart_data as $value) { ?>
+    <?php foreach ($carts as $value) { ?>
                 <li>
                     <div class="cart_item">
-                        <img class="itemimage" src="<?php print $img_dir . htmlspecialchars($value['img'], ENT_QUOTES, 'UTF-8'); ?>">
-                        <span class="cart-item-name"><?php print htmlspecialchars($value['name'], ENT_QUOTES, 'UTF-8'); ?></span>
+                        <img class="itemimage" src="<?php print (IMAGE_PATH . $value['img']); ?>">
+                        <span class="cart-item-name"><?php print h($value['name']); ?></span>
                         <span class="cart-item-price">¥<?php print $value['price']; ?></span>
                         <span class="cart-item-num"><?php print $value['amount']; ?></span>
                         <span class="finish-item-price"></span>

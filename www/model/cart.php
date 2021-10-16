@@ -78,17 +78,17 @@ function insert_cart($db, $user_id, $item_id, $amount = 1){
   return execute_query($db, $sql, $params);
 }
 
-function update_cart_amount($db, $id, $amount){
+function update_cart_amount($db, $item_id, $amount){
   $sql = "
     UPDATE
       carts
     SET
       amount = :amount
     WHERE
-      id = :id
+      item_id = :item_id
     LIMIT 1
   ";
-  $params = array(':id' => $id, ':amount' => $amount);
+  $params = array(':item_id' => $item_id, ':amount' => $amount);
   return execute_query($db, $sql, $params);
 }
 

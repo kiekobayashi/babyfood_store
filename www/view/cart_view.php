@@ -25,7 +25,7 @@
                 <div class="cart_item">
                     <img class="itemimage" src="<?php print(IMAGE_PATH . $value['img']); ?>">
                     <span class="cart-item-name"><?php print h($value['name']); ?></span>
-                    <form class="cart-item-del" action="cart.php" method="post">
+                    <form class="cart-item-del" action="./cart.php" method="post">
                         <input type="submit" value="削除">
                         <input type="hidden" name="item_id" value="<?php print $value['item_id']; ?>">
                         <input type="hidden" name="sql_kind" value="delete_cart">
