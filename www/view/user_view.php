@@ -3,27 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>ユーザ管理ページ</title>
-        <style>
-        table {
-          width: 750px;
-          border-collapse: collapse;
-        }
-        table, tr, th, td {
-          border: solid 1px;
-          padding: 10px;
-          text-align: center;
-        }
-        div {
-            border-top: solid 1px;
-            border-bottom: solid 1px;
-        }
-        td img {
-            max-height: 120px;
-        }
-        .status_false {
-            background-color: #A9A9A9;
-        }
-        </style>
+        <link rel="stylesheet" href="<?php print(STYLESHEET_PATH . 'manage.css'); ?>">
     </head>
     <body>
         <h1>Baby Food Shop 管理ページ</h1>

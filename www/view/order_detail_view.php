@@ -4,20 +4,6 @@
   <meta charset="utf-8">
   <title>購入履歴明細</title>
   <link rel="stylesheet" href="<?php print(STYLESHEET_PATH . 'customer.css'); ?>">
-  <style>
-    table {
-      width: 960px;
-      border-collapse: collapse;
-    }
-    table, tr, th, td {
-      border: solid 1px;
-      padding: 10px;
-      text-align: center;
-    }
-    td img {
-        max-height: 120px;
-    }
-  </style>
 </head>
 <body>
   <header>
@@ -42,10 +28,7 @@
           </tr>
         </tbody>
       </table>
-
-
-      
-      <table>
+      <table class='order_detail'>
         <thead>
           <tr>
             <th>商品名</th>

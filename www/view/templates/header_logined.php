@@ -15,3 +15,8 @@
         </div>
     </div>
 </div>
+<ul class="select_age">
+    <a href="./age.php?age=0"><li class="age_list age_0">ごっくん期</li></a>
+    <a href="./age.php?age=1"><li class="age_list age_1">もぐもぐ期</li></a>
+    <a href="./age.php?age=2"><li class="age_list age_2">かみかみ期</li></a>
+</ul>

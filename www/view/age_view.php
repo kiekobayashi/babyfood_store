@@ -7,7 +7,7 @@
 </head>
 <body>
     <header>
-        <?php include VIEW_PATH . 'templates/header_logined.php'; ?>
+<?php include VIEW_PATH . 'templates/header_logined.php'; ?>
         <ul class="select_age"> 
             <a href="./age.php?age=0"><li class="age_list age_0">ごっくん期</li></a>
             <a href="./age.php?age=1"><li class="age_list age_1">もぐもぐ期</li></a>

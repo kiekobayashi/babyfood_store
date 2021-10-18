@@ -259,3 +259,20 @@ h2 {
     font-size: 13px;
     text-align: center;
 }
+
+table {
+    width: 960px;
+    border-collapse: collapse;
+    background-color: #ffffff;
+  }
+  table, tr, th, td {
+    border: solid 1px;
+    padding: 10px;
+    text-align: center;
+  }
+  td img {
+      max-height: 120px;
+  }
+  .order_detail {
+    margin-top: 30px;
+  }

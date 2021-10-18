@@ -7,12 +7,12 @@
 </head>
 <body>
     <header>
-        <?php include VIEW_PATH . 'templates/header_logined.php'; ?>
+<?php include VIEW_PATH . 'templates/header_logined.php'; ?>
     </header>
     <div class="content">
         <h1 class="title">ショッピングカート</h1>
-        <?php include VIEW_PATH . 'templates/messages.php'; ?>
-        <?php if (count($carts) === 0) { ?>
+<?php include VIEW_PATH . 'templates/messages.php'; ?>
+<?php if (count($carts) === 0) { ?>
         <p>商品はありません。</p>
 <?php } ?>
         <div class="cart-list-title">

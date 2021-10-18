@@ -4,20 +4,6 @@
   <meta charset="utf-8">
   <title>商品購入履歴</title>
   <link type="text/css" rel="stylesheet" href="<?php print(STYLESHEET_PATH . 'customer.css'); ?>">
-  <style>
-    table {
-      width: 960px;
-      border-collapse: collapse;
-    }
-    table, tr, th, td {
-      border: solid 1px;
-      padding: 10px;
-      text-align: center;
-    }
-    td img {
-        max-height: 120px;
-    }
-  </style>
 </head>
 <body>
   <header>
