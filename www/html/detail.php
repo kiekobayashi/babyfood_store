@@ -25,6 +25,7 @@ $item_id = get_post('item_id');
 if ($sql_kind === 'insert') {
     if(add_cart($db, $user['id'], $item_id)){
         set_message('カートに商品を追加しました。');
+        redirect_to('detail.php?id=' . $item_id);
     }else {
         set_error('カートの追加に失敗しました。');
     }

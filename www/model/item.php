@@ -47,12 +47,42 @@ function get_items($db, $is_open = false){
   return fetch_all_query($db, $sql);
 }
 
+function get_age_items($db, $is_open = false, $age){
+  $sql = '
+    SELECT
+      id, 
+      name,
+      comment,
+      stock,
+      price,
+      img,
+      status,
+      age
+    FROM
+      items
+  ';
+  if($is_open === true){
+    $sql .= '
+      WHERE status = 1
+    ';
+  }
+  if ($age !== '') {
+    $sql .= ' AND     age = ' . $age;
+  }
+
+  return fetch_all_query($db, $sql);
+}
+
 function get_all_items($db){
   return get_items($db);
 }
 
 function get_open_items($db){
   return get_items($db, true);
+}
+
+function get_open_age_items($db, $age){
+  return get_age_items($db, true, $age);
 }
 
 function regist_item($db, $name, $comment, $price, $stock, $status, $image, $age){
