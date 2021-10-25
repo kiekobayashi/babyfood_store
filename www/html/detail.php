@@ -13,7 +13,6 @@ if(is_logined() === false){
 $db = get_db_connect();
 $user = get_login_user($db);
 
-$token = get_csrf_token();
 
 $sql_kind = get_post('sql_kind');
 $id = get_get('id');
@@ -29,12 +28,12 @@ if (is_valid_csrf_token($token) === false) {
 }  
 
 if ($sql_kind === 'insert') {
-    if(add_cart($db, $user['id'], $item_id)){
-        set_message('カートに商品を追加しました。');
-        redirect_to('detail.php?id=' . $item_id);
-    }else {
-        set_error('カートの追加に失敗しました。');
-    }
+  if(add_cart($db, $user['id'], $item_id)){
+    set_message('カートに商品を追加しました。');
+    redirect_to('detail.php?id=' . $item_id);
+  }else {
+    set_error('カートの追加に失敗しました。');
+  }
 }
 
 $rankings = get_ranking($db);

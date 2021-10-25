@@ -35,8 +35,8 @@ if ($sql_kind === 'delete_cart') {
     set_message('商品を削除しました。');
   }else {
       set_error('商品の削除に失敗しました。');
-    }
-    redirect_to(CART_URL);
+  }
+  redirect_to(CART_URL);
   }
 
   if ($sql_kind === 'change_cart') {

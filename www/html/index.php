@@ -39,4 +39,4 @@ $rankings = get_ranking($db);
 
 $token = get_csrf_token();
 
-include_once VIEW_PATH . 'top_view.php';
+include_once VIEW_PATH . 'index_view.php';

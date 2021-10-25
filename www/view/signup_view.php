@@ -20,7 +20,7 @@
                     <input type="hidden" name="token" value="<?php print h($token); ?>">
                 </div>
             </form>
-            <a href="./top.php">ログインページへ移動</a>
+            <a href="./login.php">ログインページへ移動</a>
         </div>
     </div>
     <footer>

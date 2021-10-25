@@ -27,7 +27,7 @@
                     <span class="cart-item-name"><?php print h($value['name']); ?></span>
                     <form class="cart-item-del" action="./cart.php" method="post">
                         <input type="submit" value="削除">
-                        <input type="hidden" name="item_id" value="<?php print $value['item_id']; ?>">
+                        <input type="hidden" name="id" value="<?php print $value['id']; ?>">
                         <input type="hidden" name="sql_kind" value="delete_cart">
                         <input type="hidden" name="token" value="<?php print h($token); ?>">
                     </form>

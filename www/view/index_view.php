@@ -15,7 +15,7 @@
             <li>
 <?php foreach ($items as $value) { ?>
                 <div class="item">
-                    <form action="./top.php" method="post">
+                    <form action="./index.php" method="post">
                         <a href="./detail.php?id=<?php print $value['id']; ?>"><img class="itemimage" src="<?php print(IMAGE_PATH . $value['img']); ?>" ></a>
                         <div>
                             <p><?php print h($value['name']); ?></p>
