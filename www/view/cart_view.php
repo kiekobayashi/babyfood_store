@@ -29,12 +29,14 @@
                         <input type="submit" value="削除">
                         <input type="hidden" name="item_id" value="<?php print $value['item_id']; ?>">
                         <input type="hidden" name="sql_kind" value="delete_cart">
+                        <input type="hidden" name="token" value="<?php print h($token); ?>">
                     </form>
                     <span class="cart-item-price">¥<?php print $value['price']; ?></span>
                     <form class="form_select_amount" id="form_select_amount4" action="./cart.php" method="post">
                         <input type="text" class="cart-item-num2" min="0" name="amount" value="<?php print $value['amount']; ?>">個&nbsp;<input type="submit" value="変更する">
-                        <input type="hidden" name="item_id" value="<?php print $value['item_id']; ?>">
+                        <input type="hidden" name="id" value="<?php print $value['id']; ?>">
                         <input type="hidden" name="sql_kind" value="change_cart">
+                        <input type="hidden" name="token" value="<?php print h($token); ?>">
                   </form>
                 </div>
             </li>
@@ -46,6 +48,7 @@
         </div>
         <form action="./finish.php" method="post">
             <input class="buy-btn" type="submit" value="購入する">
+            <input type="hidden" name="token" value="<?php print h($token); ?>">
         </form>
     </div>
     <footer>

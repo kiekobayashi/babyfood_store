@@ -150,6 +150,9 @@ function get_csrf_token(){
 
 // トークンのチェック
 function is_valid_csrf_token($token){
+  if($_SERVER['REQUEST_METHOD'] === 'GET'){
+    return true;
+  }
   if($token === '') {
     return false;
   }

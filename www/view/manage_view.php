@@ -32,6 +32,7 @@
         </p>
         <p><input type="submit" name="submit" value="■□■□■商品追加■□■□■"></p>
         <input type="hidden" name="sql_kind" value="insert">
+        <input type="hidden" name="token" value="<?php print h($token); ?>">
     </form>
 </div>
     <h2>商品情報変更</h2>
@@ -66,6 +67,7 @@
                     <input type="submit" value="変更">
                     <input type="hidden" name="sql_kind" value="update">
                     <input type="hidden" name="id" value="<?php print $value['id']; ?>">
+                    <input type="hidden" name="token" value="<?php print h($token); ?>">
                 </form>
             </td>
             <td>
@@ -76,9 +78,10 @@
     <?php } else { ?>
                     <input type="submit" value="非公開 → 公開">
                     <input type="hidden" name="status" value="1">
-    <?php } ?>
+                    <?php } ?>
                     <input type="hidden" name="id" value="<?php print $value['id']; ?>">
                     <input type="hidden" name="sql_kind" value="change">
+                    <input type="hidden" name="token" value="<?php print h($token); ?>">
                 </form>
             </td>
             <td>
@@ -91,6 +94,7 @@
                     <input type="submit" value="変更">
                     <input type="hidden" name="sql_kind" value="change_age">
                     <input type="hidden" name="id" value="<?php print $value['id']; ?>">
+                    <input type="hidden" name="token" value="<?php print h($token); ?>">
                 </form>
             </td>
             <td>
@@ -98,6 +102,7 @@
                     <input type="submit" value="削除">
                     <input type="hidden" name="id" value="<?php print $value['id']; ?>">
                     <input type="hidden" name="sql_kind" value="delete">
+                    <input type="hidden" name="token" value="<?php print h($token); ?>">
                 </form>
             </td>
         </tr>

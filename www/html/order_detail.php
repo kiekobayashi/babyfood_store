@@ -16,6 +16,12 @@ $db = get_db_connect();
 $user = get_login_user($db);
 
 $order_id = get_post('order_id');
+$token = get_post('token');
+
+if (is_valid_csrf_token($token) === false) {
+  set_error('トークンが不正です');
+  redirect_to(ORDER_URL);
+}  
 
 // ユーザーは識別せずに読み込み
 $order = get_order($db, $order_id);

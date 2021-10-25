@@ -29,6 +29,7 @@
                     <input class="detail_cart" type="submit" value="カートに入れる">
                     <input type="hidden" name="item_id" value="<?php print $item['id']; ?>">
                     <input type="hidden" name="sql_kind" value="insert">
+                    <input type="hidden" name="token" value="<?php print h($token); ?>">
     <?php } else { ?>         
                     <span class="red">SOLD OUT</span>
                 </div>

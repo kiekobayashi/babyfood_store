@@ -15,7 +15,10 @@
             <form method="post" action="signup_processing.php">
                 <div>ユーザー名：<input type="text" name="name" placeholder="ユーザー名"></div>
                 <div>パスワード：<input type="password" name="password" placeholder="パスワード"></div>
-                <div><input type="submit" value="ユーザーを新規作成する"></div>
+                <div>
+                    <input type="submit" value="ユーザーを新規作成する">
+                    <input type="hidden" name="token" value="<?php print h($token); ?>">
+                </div>
             </form>
             <a href="./top.php">ログインページへ移動</a>
         </div>

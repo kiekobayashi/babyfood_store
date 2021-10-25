@@ -78,29 +78,29 @@ function insert_cart($db, $user_id, $item_id, $amount = 1){
   return execute_query($db, $sql, $params);
 }
 
-function update_cart_amount($db, $item_id, $amount){
+function update_cart_amount($db, $id, $amount){
   $sql = "
     UPDATE
       carts
     SET
       amount = :amount
     WHERE
-      item_id = :item_id
+      id = :id
     LIMIT 1
   ";
-  $params = array(':item_id' => $item_id, ':amount' => $amount);
+  $params = array(':id' => $id, ':amount' => $amount);
   return execute_query($db, $sql, $params);
 }
 
-function delete_cart($db, $item_id){
+function delete_cart($db, $id){
   $sql = "
     DELETE FROM
       carts
     WHERE
-      item_id = :item_id
+      id = :id
     LIMIT 1
   ";
-  $params = array(':item_id' => $item_id);
+  $params = array(':id' => $id);
   return execute_query($db, $sql, $params);
 }
 

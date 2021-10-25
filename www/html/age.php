@@ -13,13 +13,17 @@ if(is_logined() === false){
 $db = get_db_connect();
 $user = get_login_user($db);
 
-$token = get_csrf_token();
-
 $age = get_get('age');
 $items = get_open_age_items($db, $age);
 
 $sql_kind = get_post('sql_kind');
 $id = get_post('id');
+$token = get_post('token');
+
+if (is_valid_csrf_token($token) === false) {
+  set_error('トークンが不正です');
+  redirect_to(TOP_URL);
+}  
 
 if ($sql_kind === 'insert') {
     if(add_cart($db, $user['id'], $id)){
@@ -29,5 +33,6 @@ if ($sql_kind === 'insert') {
     }
 }
 
+$token = get_csrf_token();
 
 include_once VIEW_PATH . 'age_view.php';

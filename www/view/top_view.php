@@ -7,10 +7,10 @@
 </head>
 <body>
     <header>
-        <?php include VIEW_PATH . 'templates/header_logined.php'; ?>
+<?php include VIEW_PATH . 'templates/header_logined.php'; ?>
     </header>
     <div class="content">
-    <?php include VIEW_PATH . 'templates/messages.php'; ?>
+<?php include VIEW_PATH . 'templates/messages.php'; ?>
         <ul class="item-list">
             <li>
 <?php foreach ($items as $value) { ?>
@@ -25,6 +25,7 @@
                         <input class="cart-btn" type="submit" value="カートに入れる">
                         <input type="hidden" name="id" value="<?php print $value['id']; ?>">
                         <input type="hidden" name="sql_kind" value="insert">
+                        <input type="hidden" name="token" value="<?php print h($token); ?>">
     <?php } else { ?>         
                         <span class="red">SOLD OUT</span>
     <?php } ?>

@@ -32,6 +32,7 @@
                   <form method="post" action="order_detail.php">
                     <input class="btn btn-block btn-primary" type="submit" value="表示">
                     <input type="hidden" name="order_id" value="<?php print($order['order_id']); ?>">
+                    <input type="hidden" name="token" value="<?php print h($token); ?>">
                   </form>
               </td>
             </tr>

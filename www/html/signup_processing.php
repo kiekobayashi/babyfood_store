@@ -14,12 +14,12 @@ $password = get_post('password');
 
 $db = get_db_connect();
 
-// $token = get_post('token');
+$token = get_post('token');
 
-// if (is_valid_csrf_token($token) === false) {
-//   set_error('トークンが不正です');
-//   redirect_to(SIGNUP_URL);
-// }
+if (is_valid_csrf_token($token) === false) {
+  set_error('トークンが不正です');
+  redirect_to(SIGNUP_URL);
+}
 
 try{
   $result = regist_user($db, $name, $password);

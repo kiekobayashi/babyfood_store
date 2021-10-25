@@ -21,6 +21,12 @@ $id = get_get('id');
 $item = get_item($db, $id);
 
 $item_id = get_post('item_id');
+$token = get_post('token');
+
+if (is_valid_csrf_token($token) === false) {
+  set_error('トークンが不正です');
+  redirect_to(TOP_URL);
+}  
 
 if ($sql_kind === 'insert') {
     if(add_cart($db, $user['id'], $item_id)){
@@ -32,5 +38,7 @@ if ($sql_kind === 'insert') {
 }
 
 $rankings = get_ranking($db);
+
+$token = get_csrf_token();
 
 include_once VIEW_PATH . 'detail_view.php';
